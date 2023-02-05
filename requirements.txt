@@ -1,0 +1,10 @@
+# Install latest versions of the required packages
+
+rise        # present notebooks as slides
+matplotlib  # plot charts
+networkx    # draw graphs
+
+black       # format code
+isort       # sort imports
+pylint      # check code quality
+nbqa        # run black, isort, pylint on notebooks
