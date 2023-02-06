@@ -70,16 +70,16 @@ This will create the environment `~/venvs/<name>`. As mentioned above,
 Note that before `echo` and after the zero are backticks, not quote marks.
 If you want to put the environment in a folder other than `~/venvs`, see below.
 
-1.  Close the current terminal and open a new one.
-2.  Activate the environment by typing `<name>`
-3.   Use Python 3.10 and the installed packages
-4.   Deactivate the environment by typing `deactivate`
+8.  Close the current terminal and open a new one.
+9.  Activate the environment by typing `<name>`
+10. Use Python 3.10 and the installed packages
+11. Deactivate the environment by typing `deactivate`
 
 Steps 7 and 8 are done once per environment.
 Steps 9-11 are done every time you want to use an environment.
 The following provides more details on step 7.
 
-The `virtual-env-main` folder has a `create-env` shell script that
+The `virtual-env-main` folder has a `createnv` shell script that
 first creates an environment of a given name in a given folder
 and then installs all necessary packages in that environment.
 The script also creates command that allows you to activate the environment
@@ -89,14 +89,17 @@ If the folder doesn't exist, the script creates it for you.
 
 If you don't indicate a folder, the script uses folder `~/venvs`. Some examples:
 
-- ``./create-env.sh `echo $0` m269-23j`` creates the environment in `~/venvs/m269-13j`
-- ``./create-env.sh `echo $0` dsa-ou`` creates the environment in `~/venvs/dsa-ou`
-- ``./create-env.sh `echo $0` dsa-ou ~/Documents`` creates the environment in `~/Documents/dsa-ou`
+- ``./createnv.sh `echo $0` m269-23j`` creates the environment in `~/venvs/m269-13j`
+- ``./createnv.sh `echo $0` dsa-ou`` creates the environment in `~/venvs/dsa-ou`
+- ``./createnv.sh `echo $0` dsa-ou ~/Documents`` creates the environment in `~/Documents/dsa-ou`
 
 After creating an environment, you can't rename it or move it to a different folder:
 you must delete that environment
-(with `rm -rf ~/venvs/<name>` or `rm -rf <folder>/<name>` if chose a different folder)
+(with `rm -rf ~/venvs/<name>` or `rm -rf <folder>/<name>` if you chose a different folder)
 and create a new one with the desired new name and in the desired new folder.
+
+After running the `createnv` script, you can remove folder `virtual-env-main`,
+as it's no longer needed.
 
 ### In Windows
 

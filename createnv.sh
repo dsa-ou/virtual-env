@@ -1,6 +1,19 @@
 #!/bin/bash
 
-if [ $# -lt 2 ]     # number of arguments less than 2
+# This script does the following, in this order:
+# - check user has given 2-3 arguments; if not, print usage message and exit
+# - check terminal is running bash, zsh, tcsh, csh or fish; if not, print error and exit
+# - check Python 3.10 is installed; if not, print error and exit
+# - check file requirements.txt exists; if not, print error and exit
+# - display where environment will be created and ask user to confirm; if not, exit
+# - create virtual environment in ~/venvs or in the folder specified by the user
+# - activate environment
+# - install packages listed in requirements.txt
+# - deactivate environment
+# - add an alias to shell's startup file
+# - tell user they can activate environment by typing its name
+
+if [ $# -lt 2 ] || [ $# -gt 3 ] # number of arguments neither 2 nor 3
 then
     echo "Usage: ./createnv.sh \`echo \$0\` <name of environment> [<path to parent folder>]"
     echo "If no path is provided, the environment is created in ~/venvs."
@@ -63,6 +76,7 @@ source $VENV/bin/activate                   # this script runs under bash
 echo "Environment activated."
 
 echo "Dowloading and installing packages... (this will take long)"
+pip install --upgrade pip
 pip install -r requirements.txt
 echo "Packages installed."
 deactivate
