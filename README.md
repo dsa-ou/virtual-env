@@ -63,11 +63,10 @@ with any name. We recommend that you
 ### In Unix
 The steps to create and use virtual environments in Unix are:
 
-7. Create an environment by typing ``./createnv.sh `echo $0` <name>``.
+7. Create an environment by typing ``./createnv.sh <name>``.
 
 This will create the environment `~/venvs/<name>`. As mentioned above,
 `<name>` should be one of `dsa-ou`, `m269-23j`, `m269-24j`, etc.
-Note that before `echo` and after the zero are backticks, not quote marks.
 If you want to put the environment in a folder other than `~/venvs`, see below.
 
 8.  Close the current terminal and open a new one.
@@ -89,9 +88,9 @@ If the folder doesn't exist, the script creates it for you.
 
 If you don't indicate a folder, the script uses folder `~/venvs`. Some examples:
 
-- ``./createnv.sh `echo $0` m269-23j`` creates the environment in `~/venvs/m269-13j`
-- ``./createnv.sh `echo $0` dsa-ou`` creates the environment in `~/venvs/dsa-ou`
-- ``./createnv.sh `echo $0` dsa-ou ~/Documents`` creates the environment in `~/Documents/dsa-ou`
+- ``./createnv.sh m269-23j`` creates the environment in `~/venvs/m269-13j`
+- ``./createnv.sh dsa-ou`` creates the environment in `~/venvs/dsa-ou`
+- ``./createnv.sh dsa-ou ~/Documents`` creates the environment in `~/Documents/dsa-ou`
 
 After creating an environment, you can't rename it or move it to a different folder:
 you must delete that environment
