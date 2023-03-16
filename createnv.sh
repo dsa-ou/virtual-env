@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script does the following, in this order:
-# - check user has given 2-3 arguments; if not, print usage message and exit
+# - check user has given 1-2 arguments; if not, print usage message and exit
 # - check terminal is running bash, zsh, tcsh, csh or fish; if not, print error and exit
 # - check Python 3.10 is installed; if not, print error and exit
 # - check file requirements.txt exists; if not, print error and exit
@@ -13,27 +13,29 @@
 # - add an alias to shell's startup file
 # - tell user they can activate environment by typing its name
 
-if [ $# -lt 2 ] || [ $# -gt 3 ] # number of arguments neither 2 nor 3
+if [ $# -lt 1 ] || [ $# -gt 2 ] # number of arguments neither 1 nor 2
 then
-    echo "Usage: ./createnv.sh \`echo \$0\` <name of environment> [<path to parent folder>]"
+    echo "Usage: ./createnv.sh <name of environment> [<path to parent folder>]"
     echo "If no path is provided, the environment is created in ~/venvs."
     echo "For examples and details, see https://github.com/dsa-ou/virtual-env."
     exit
 fi
 
-if [[ $1 == *bash* ]]
+parent_shell=$(ps -o command $PPID)
+
+if [[ $parent_shell == *bash* ]]
 then
     shell=bash
-elif [[ $1 == *zsh* ]]
+elif [[ $parent_shell == *zsh* ]]
 then
     shell=zsh
-elif [[ $1 == *tcsh* ]]
+elif [[ $parent_shell == *-csh* ]]
 then
     shell=tcsh
-elif [[ $1 == *csh* ]]
+elif [[ $parent_shell == *-sh* ]]
 then
     shell=csh
-elif [[ $1 == *fish* ]]
+elif [[ $parent_shell == *fish* ]]
 then
     shell=fish
 else
@@ -41,11 +43,11 @@ else
     exit
 fi
 
-if [ $# -eq 2 ]
+if [ $# -eq 1 ]
 then
-    VENV=~/venvs/$2
+    VENV=~/venvs/$1
 else
-    VENV=$3/$2
+    VENV=$2/$1
 fi
 
 if ! command -v python3.10 &> /dev/null
@@ -84,11 +86,11 @@ echo "Environment deactivated."
 
 if [ $shell = "csh" ] || [ $shell = "tcsh" ]
 then
-    echo "alias $2 'source $VENV/bin/activate.csh'" >> ~/.${shell}rc
+    echo "alias $1 'source $VENV/bin/activate.csh'" >> ~/.${shell}rc
 elif [ $shell = "fish" ]
 then
-    echo "alias $2='source $VENV/bin/activate.fish'" >> ~/.config/fish/config.fish
+    echo "alias $1='source $VENV/bin/activate.fish'" >> ~/.config/fish/config.fish
 else
-    echo "alias $2='source $VENV/bin/activate'" >> ~/.${shell}rc
+    echo "alias $1='source $VENV/bin/activate'" >> ~/.${shell}rc
 fi
-echo "When you next open a terminal, activate the environment by typing $2."
+echo "When you next open a terminal, activate the environment by typing $1."
