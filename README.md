@@ -22,7 +22,7 @@ The overall process to create and use a virtual environment for `dsa-ou` is:
 - Run the script (only for Unix at the moment) that
   creates the environment and installs the packages.
 - Activate the created environment.
-- Use Python 3.10 and the installed packages.
+- Work on M269 or a `dsa-ou` project.
 - Deactivate the environment.
 
 The following instructions provide the details.
@@ -70,9 +70,9 @@ This will create the environment `~/venvs/<name>`. As mentioned above,
 If you want to put the environment in a folder other than `~/venvs`, see below.
 
 8.  Close the current terminal and open a new one.
-9.  Activate the environment by typing `<name>`
-10. Use Python 3.10 and the installed packages
-11. Deactivate the environment by typing `deactivate`
+9.  Activate the environment by typing `<name>`.
+10. Work on M269 or a `dsa-ou` project, using Python 3.10 and the installed packages.
+11. Deactivate the environment by typing `deactivate`.
 
 Steps 7 and 8 are done once per environment.
 Steps 9-11 are done every time you want to use an environment.
@@ -92,10 +92,9 @@ If you don't indicate a folder, the script uses folder `~/venvs`. Some examples:
 - `./createnv.sh dsa-ou` creates the environment in `~/venvs/dsa-ou`
 - `./createnv.sh dsa-ou ~/Documents` creates the environment in `~/Documents/dsa-ou`
 
-After creating an environment, you can't rename it or move it to a different folder:
-you must delete that environment
-(with `rm -rf ~/venvs/<name>` or `rm -rf <folder>/<name>` if you chose a different folder)
-and create a new one with the desired new name and in the desired new folder.
+After creating an environment, you *cannot* rename it or move it to a different folder:
+you must delete the environment's folder
+and create a new environment with the desired new name and in the desired new folder.
 
 After running the `createnv` script, you can remove folder `virtual-env-main`,
 as it's no longer needed.
