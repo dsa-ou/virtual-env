@@ -21,7 +21,7 @@ then
     exit
 fi
 
-parent_shell=$(ps -o cmd= -q $PPID)
+parent_shell=$(ps -o command $PPID)
 
 if [[ $parent_shell == *bash* ]]
 then
